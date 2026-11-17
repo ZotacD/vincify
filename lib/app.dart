@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vincify/data/product_client.dart';
 import 'package:vincify/presentation/pages/cart_page.dart';
+import 'package:vincify/presentation/pages/payment_page.dart';
 import 'package:vincify/presentation/pages/product_details_page.dart';
 import 'package:vincify/presentation/pages/product_list_page.dart';
 
@@ -36,6 +37,7 @@ class Vincify extends StatelessWidget {
         ],
       ),
       GoRoute(path: "/cart", builder: (context, state) => CartPage()),
+      GoRoute(path: "/payment", builder: (context, state) => PaymentPage()),
     ],
   );
 

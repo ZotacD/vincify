@@ -68,7 +68,7 @@ class CartPage extends ConsumerWidget {
         width: MediaQuery.of(context).size.width,
         child: FilledButton.icon(
           onPressed: () => {
-
+            context.go("/payment")
           },
           label: Text("Commander"),
           icon: Icon(Icons.checklist),

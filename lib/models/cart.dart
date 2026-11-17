@@ -15,7 +15,13 @@ class Cart extends _$Cart {
   }
 
   void remove(Product product) {
-    state = state.where((p) => p != product).toList();
+    final index = state.indexOf(product);
+
+    if (index != -1) {
+      final newState = [...state];
+      newState.removeAt(index);
+      state = newState;
+    }
   }
 
   String get priceInEuros =>
