@@ -7,10 +7,10 @@ import 'package:vincify/models/product.dart';
 
 import '../../models/cart.dart';
 
-class ProductPage extends ConsumerWidget {
+class ProductDetailsPage extends ConsumerWidget {
   final String id;
 
-  const ProductPage({required this.id, super.key});
+  const ProductDetailsPage({required this.id, super.key});
 
   static const double PADDING = 15.0;
 
@@ -42,6 +42,22 @@ class ProductPage extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            for (int i = 0; i < product.rate.ceil(); i++) ...[
+                              Icon(Icons.star, color: Colors.amber),
+                            ],
+                            for (
+                              int i = 0;
+                              i < 5 - product.rate.ceil();
+                              i++
+                            ) ...[Icon(Icons.star, color: Colors.grey)],
+                            Text("${product.rate}/5"),
+                          ],
+                        ),
+
+                        Divider(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           spacing: 50,
@@ -81,7 +97,9 @@ class ProductPage extends ConsumerWidget {
                     padding: EdgeInsets.all(PADDING),
                     width: MediaQuery.of(context).size.width,
                     child: OutlinedButton.icon(
-                      onPressed: () => {ref.read(cartProvider.notifier).add(product)},
+                      onPressed: () => {
+                        ref.read(cartProvider.notifier).add(product),
+                      },
                       label: Text("Ajouter au panier"),
                       icon: Icon(Icons.add_shopping_cart),
                     ),

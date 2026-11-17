@@ -36,7 +36,7 @@ class ProductWidget extends ConsumerWidget {
         },
         child: Text(
           GoRouterState.of(context).uri.path == '/cart'
-              ? "SUPPRIMER"
+              ? "RETIRER"
               : "AJOUTER",
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vincify/models/product.dart';
+
 part 'cart.g.dart';
 
 @riverpod
@@ -16,4 +17,7 @@ class Cart extends _$Cart {
   void remove(Product product) {
     state = state.where((p) => p != product).toList();
   }
+
+  String get priceInEuros =>
+      "${(state.fold<num>(0, (prv, actual) => prv + actual.price)).toStringAsFixed(2)}€";
 }

@@ -5,6 +5,7 @@ class Product {
   final String image;
   final String category;
   final String description;
+  final num rate;
 
   Product({
     required this.id,
@@ -13,6 +14,7 @@ class Product {
     required this.image,
     required this.category,
     required this.description,
+    required this.rate,
   });
 
   String getPrice() {
@@ -27,6 +29,7 @@ class Product {
       'image': this.image,
       'category': this.category,
       'description': this.description,
+      'rate': this.rate,
     };
   }
 
@@ -38,6 +41,7 @@ class Product {
       image: map['image'] as String,
       category: map['category'] as String,
       description: map['description'] as String,
+      rate: map['rating']['rate'] as num,
     );
   }
 
@@ -51,7 +55,8 @@ class Product {
           price == other.price &&
           image == other.image &&
           category == other.category &&
-          description == other.description;
+          description == other.description &&
+          rate == other.rate;
 
   @override
   int get hashCode =>
@@ -60,5 +65,6 @@ class Product {
       price.hashCode ^
       image.hashCode ^
       category.hashCode ^
-      description.hashCode;
+      description.hashCode ^
+      rate.hashCode;
 }

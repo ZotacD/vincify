@@ -8,8 +8,8 @@ import 'package:vincify/presentation/widgets/product_widget.dart';
 
 import '../../models/product.dart';
 
-class ProductsPage extends ConsumerWidget {
-  const ProductsPage({super.key});
+class ProductListPage extends ConsumerWidget {
+  const ProductListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
