@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:vincify/data/product_client.dart';
@@ -7,11 +8,11 @@ import 'package:vincify/presentation/widgets/product_widget.dart';
 
 import '../../models/product.dart';
 
-class ProductsPage extends StatelessWidget {
+class ProductsPage extends ConsumerWidget {
   const ProductsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text('appbarTitle'),
@@ -20,7 +21,7 @@ class ProductsPage extends StatelessWidget {
           IconButton(
             onPressed: () => context.go("/cart"),
             icon: Badge.count(
-              count: context.watch<Cart>().products.length,
+              count: ref.watch(cartProvider).length,
               child: Icon(Icons.shopping_cart),
             ),
           ),

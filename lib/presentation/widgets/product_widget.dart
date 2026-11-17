@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:vincify/models/product.dart';
 
 import '../../models/cart.dart';
 
-class ProductWidget extends StatelessWidget {
+class ProductWidget extends ConsumerWidget {
   final Product product;
 
   const ProductWidget({super.key, required this.product});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       onTap: () {
         context.go('/products/${product.id}', extra: product);
@@ -30,9 +30,9 @@ class ProductWidget extends StatelessWidget {
       trailing: TextButton(
         onPressed: () => {
           if (GoRouterState.of(context).uri.path == '/cart')
-            {context.read<Cart>().remove(product)}
+            {ref.read(cartProvider.notifier).remove(product)}
           else
-            {context.read<Cart>().add(product)},
+            {ref.read(cartProvider.notifier).add(product)},
         },
         child: Text(
           GoRouterState.of(context).uri.path == '/cart'

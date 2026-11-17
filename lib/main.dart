@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vincify/app.dart';
-import 'package:vincify/models/cart.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (BuildContext context) => Cart(),
-      child: Vincify(),
-    ),
-  );
+  runApp(ProviderScope(child: Vincify()));
 }

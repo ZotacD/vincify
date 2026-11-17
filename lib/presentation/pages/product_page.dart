@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:vincify/data/product_client.dart';
@@ -6,7 +7,7 @@ import 'package:vincify/models/product.dart';
 
 import '../../models/cart.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends ConsumerWidget {
   final String id;
 
   const ProductPage({required this.id, super.key});
@@ -14,7 +15,7 @@ class ProductPage extends StatelessWidget {
   static const double PADDING = 15.0;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text('appbarTitle'),
@@ -66,7 +67,7 @@ class ProductPage extends StatelessWidget {
                               .colorScheme
                               .primary,
                         ),
-                        if (context.watch<Cart>().contains(product)) ...[
+                        if (ref.watch(cartProvider).contains(product)) ...[
                           Divider(),
                           Chip(label: Text("Déjà présent dans le panier")),
                         ],
@@ -80,7 +81,7 @@ class ProductPage extends StatelessWidget {
                     padding: EdgeInsets.all(PADDING),
                     width: MediaQuery.of(context).size.width,
                     child: OutlinedButton.icon(
-                      onPressed: () => {context.read<Cart>().add(product)},
+                      onPressed: () => {ref.read(cartProvider.notifier).add(product)},
                       label: Text("Ajouter au panier"),
                       icon: Icon(Icons.add_shopping_cart),
                     ),
